@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS FileRoot
   version       varchar(255) NOT NULL DEFAULT '',
   production    tinyint      NOT NULL DEFAULT '1' COMMENT 'maybe not useful',
   PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Configuration for a measurement';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs COMMENT='Configuration for a measurement';
 
 CREATE TABLE IF NOT EXISTS Measurement
 ( id int NOT NULL AUTO_INCREMENT,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS File
   PRIMARY KEY (id),
   UNIQUE INDEX(relPath, fileRootId),
   CONSTRAINT fkf01 FOREIGN KEY(fileRootId) REFERENCES FileRoot(id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Configuration for a measurement';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs COMMENT='Configuration for a measurement';
 
 CREATE TABLE IF NOT EXISTS MappingFileMeas
 ( id int NOT NULL AUTO_INCREMENT,

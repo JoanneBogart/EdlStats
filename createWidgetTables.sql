@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS Widget
+(id int NOT NULL AUTO_INCREMENT,
+ edlName varchar(255) NOT NULL,
+ pydmName varchar(255) NULL,
+ PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+CREATE TABLE IF NOT EXISTS MappingFileWidget
+(id int NOT NULL AUTO_INCREMENT,
+ widgetId int NOT NULL,
+ fileId   int NOT NULL,
+ lineNumber int NOT NULL,
+ PRIMARY KEY (id),
+ CONSTRAINT fkmfw01 FOREIGN KEY(widgetId) REFERENCES Widget(id),
+ CONSTRAINT fkmfw02 FOREIGN KEY(fileId) REFERENCES File(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
