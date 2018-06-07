@@ -18,12 +18,12 @@ def _getdburl(file):
 
     return engine.url.URL('mysql+mysqldb', **kwds)
 
-class HandleMeasurement(object):
+class HandleFileroot(object):
 
     def __init__(self, connect_file, id=0, nickname=None):
         # for connect_file use .ssh/stats_alchemy.txt
-        self.meas_id=id
-        self.meas_name=nickname
+        #self.meas_id=id
+        self.nickname=nickname
         self.rootdir=None
         self.rootdir_id=None
 
@@ -33,11 +33,11 @@ class HandleMeasurement(object):
 
         if id != 0:
             # Check it's there; fetch nickname
-            q = 'select FR.nickname as nick,FR.dir,FR.id as frid from Measurement M join FileRoot FR on M.fileRootId=FR.id where M.id=' + str(id)
+            q = 'select FR.nickname as nick,FR.dir,FR.id as frid from FileRoot where FR.id=' + str(id)
             r = self.engine.execute(q)
             row = r.fetchone()
             if row == None:
-                raise Exception("No such id in Measurement table")
+                raise Exception("No such id in FileRoot table")
             self.nickname = row['nick']
             self.rootdir = row['dir']
             self.rootdir_id = row['frid']
@@ -45,26 +45,23 @@ class HandleMeasurement(object):
         else:
             if nickname is not None:
                 # Check if it's there; fetch id
-                q = 'select M.id as mid,FR.dir,FR.id as frid from Measurement M join FileRoot FR on M.fileRootId=FR.id where nickname="' + nickname + '"'
+                q = 'select FR.dir,FR.id as frid from FileRoot FR where nickname="' + nickname + '"'
                 r = self.engine.execute(q)
                 row = r.fetchone()
                 if row == None:
                     raise Exception("No row with nickname " + nickname)
 
-                self.meas_id = row['mid']
                 self.rootdir = row['dir']
                 self.rootdir_id = row['frid']
-                print('Found id ' + str(self.meas_id))
+                print('Found id ' + str(self.rootdir_id))
                 
                 row = r.fetchone()
                 if row != None:
                     raise Exception("No unique row with nickname " + nickname)
 
-        #print("Root dir is: ",self.root_dir)
-
     def scan_files(self):
         '''
-        Look for edl files associated with our measurement context. 
+        Look for edl files associated with our file root
         Make entries in File and MappingFileMeas tables
         '''
         from getStats import get_stats
@@ -76,7 +73,7 @@ class HandleMeasurement(object):
             print("Last modified: ", file_entries[0][1])
             print("Last accessed (count): ", file_entries[0][2])
             print("Last accessed (ascii ts): ", file_entries[0][3])
-        # For each file make an entry in File and one in MappingFileMeas
+        # For each file make an entry in File
 
         connect = self.engine.connect()
         with connect.begin() as trans:
@@ -90,24 +87,14 @@ class HandleMeasurement(object):
                 if first:
                     print("Insert into File is: ")
                     print(qf)
+                    firt = False
 
                 r = connect.execute(qf)
-
-                last_insert = connect.execute('select last_insert_id()')
-                last_id = last_insert.first()[0]
-                qm = "insert into MappingFileMeas (fileId,measurementId) values ('"
-                qm += str(last_id) + "','" + str(self.meas_id) + "')"
-                if first:
-                    print("Insert into MappingFileMeas is: ")
-                    print(qm)
-                    first = False
-                connect.execute(qm)
-                #if not first: break
         connect.close()
       
 if __name__ == '__main__':
-    manager = HandleMeasurement('/reg/neh/home5/jrb/.ssh/stats_alchemy.txt', 
-                                nickname='xpp')
+    manager = HandleFileroot('/reg/neh/home5/jrb/.ssh/stats_alchemy.txt', 
+                             nickname='hometest')
     #print("Instantiated")
     manager.scan_files()
 
