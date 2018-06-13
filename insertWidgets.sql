@@ -1,5 +1,5 @@
 insert into Widget (edlName, pydmName) values('ByteClass', 'PyDMByteIndicator');
-insert into Widget (edlName, pydmName) values('RegTextupateClass', NULL);
+insert into Widget (edlName, pydmName) values('RegTextupdateClass', NULL);
 insert into Widget (edlName, pydmName) values('TextentryClass', 'PyDMLineEdit');
 insert into Widget (edlName, pydmName) values('TextupdateClass', 'PyDMLineEdit');
 insert into Widget (edlName, pydmName) values('TwoDProfileMonitorClass', NULL);
@@ -17,7 +17,7 @@ insert into Widget (edlName, pydmName) values('activeLineClass', 'PyDMDrawingLin
 insert into Widget (edlName, pydmName) values('activeMenuButtonClass','#PyDMRelatedDisplayButton');
 insert into Widget (edlName, pydmName) values('activeMessageBoxClass',NULL);
 insert into Widget (edlName, pydmName) values('activeMessageButtonClass','#PyDMPushButt');
-insert into Widget (edlName, pydmName) values('activemeterClass',NULL);
+insert into Widget (edlName, pydmName) values('activeMeterClass',NULL);
 insert into Widget (edlName, pydmName) values('activeMotifSliderClass','PyDMSlider');
 insert into Widget (edlName, pydmName) values('activeMpStrobeClass',NULL);
 insert into Widget (edlName, pydmName) values('activePipClass','#PyDMEmbeddedDisplay#PyDMTabWidget');
@@ -39,5 +39,8 @@ insert into Widget (edlName, pydmName) values('pvInspectorClass', NULL);
 insert into Widget (edlName, pydmName) values('relatedDisplayClass','PyDMRelatedDisplayButton');
 insert into Widget (edlName, pydmName) values('shellCmdClass','PyDMShellCommand');
 insert into Widget (edlName, pydmName) values('xyGraphClass',NULL);
+insert into Widget (edlName, pydmName) values('cfcf6c8a_dbeb_11d2_8a97_00104b8742df',NULL);
+insert into Widget (edlName, pydmName) values('activeTableClass',NULL);
+insert into Widget (edlName, pydmName) values('activeUpdownButtonClass', '#PyDMDoubleSpinbox')
 -- insert into Widget (edlName, pydmName) values(
 
