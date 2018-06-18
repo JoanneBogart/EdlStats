@@ -38,7 +38,9 @@ CREATE TABLE IF NOT EXISTS MappingFileWidget
  lineNumber int NOT NULL,
  PRIMARY KEY (id),
  CONSTRAINT fkmfw01 FOREIGN KEY(widgetId) REFERENCES Widget(id),
- CONSTRAINT fkmfw02 FOREIGN KEY(fileId) REFERENCES File(id)
+ CONSTRAINT fkmfw02 FOREIGN KEY(fileId) REFERENCES File(id),
+ CONSTRAINT ui01 UNIQUE INDEX (fileId,widgetId,lineNumber)
+ 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 

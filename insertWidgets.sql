@@ -42,5 +42,15 @@ insert into Widget (edlName, pydmName) values('xyGraphClass',NULL);
 insert into Widget (edlName, pydmName) values('cfcf6c8a_dbeb_11d2_8a97_00104b8742df',NULL);
 insert into Widget (edlName, pydmName) values('activeTableClass',NULL);
 insert into Widget (edlName, pydmName) values('activeUpdownButtonClass', '#PyDMDoubleSpinbox')
+insert into Widget (edlName, pydmName) values('multiLineTextEntryClass', NULL);
+insert into Widget (edlName, pydmName) values('mzxyGraphClass', NULL);
+
+insert into Widget (edlName, pydmName) values('multiLineTextUpdateClass', NULL);
+insert into Widget (edlName, pydmName) values('activeSlacBarClass', NULL);
+insert into Widget (edlName, pydmName) values('mmvClass', NULL);
+insert into Widget (edlName, pydmName) values('activeFreezeButtonClass', NULL);
+insert into Widget (edlName, pydmName) values('anaSymbolClass', NULL);
+
+
 -- insert into Widget (edlName, pydmName) values(
 
